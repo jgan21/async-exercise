@@ -61,10 +61,12 @@ async function showNumberAll(nums){
 
   const data = await Promise.allSettled(allRespPromises);
 
-  console.log(data); //
+  console.log(data[0]); //
 
-  const jsonAll = data.map(d => d.json());
-  console.log(jsonAll);
+  const jsonFirst = await data[0].value.json();
+  // const jsonAll = data.map(d => d.json());
+  
+  console.log(jsonFirst);
   //data.map(d => { json = d.json
     //if d.status is 200, then d.text, push to success
     //else, d.value.statusText("Not Found"), push to failures
