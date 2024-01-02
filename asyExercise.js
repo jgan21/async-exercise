@@ -3,7 +3,7 @@
 const BASE_URL = "http://numbersapi.com"
 
 /*****************************************************************************
- * Get trivia from Numbers API on a number 
+ * Get trivia from Numbers API on a number
  *  Logs the JSON response from API.
  **/
 async function showNumberTrivia(favNum){
@@ -16,7 +16,7 @@ async function showNumberTrivia(favNum){
 
     const data = await response.json();
 
-    console.log(data);
+    console.log(data.text);
 }
 
 /*****************************************************************************
@@ -29,7 +29,7 @@ async function showNumberTriviaQuery(favNum){
 
     const data = await response.json();
 
-    console.log(data);
+    console.log(data.text);
 }
 
 /*****************************************************************************
@@ -37,6 +37,13 @@ async function showNumberTriviaQuery(favNum){
  *  Numbers API.
  *  Logs the JSON response from API.
  **/
-async function showNumberRace(){
+async function showNumberRace(nums){
 
+  const allRespPromises = nums.map(num => fetch(`${BASE_URL}/${num}?json`));
+
+  const answerPromise = await Promise.race(allRespPromises);
+
+  const winningData = await answerPromise.json();
+
+  console.log(winningData.text);
 }
