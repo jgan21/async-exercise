@@ -2,11 +2,11 @@
 
 const BASE_URL = "http://numbersapi.com"
 
-/** Get trivia from API on a number */
-
-async function showNumberTrivia(){
-
-  const favNum = 21;
+/*****************************************************************************
+ * Get trivia from Numbers API on a number 
+ *  Logs the JSON response from API.
+ **/
+async function showNumberTrivia(favNum){
 
   const response = await fetch(`${BASE_URL}/${favNum}`, {
     headers: {
@@ -16,6 +16,27 @@ async function showNumberTrivia(){
 
     const data = await response.json();
 
-  console.log(data);
+    console.log(data);
 }
 
+/*****************************************************************************
+ * Get trivia from Numbers API on a number (via query param)
+ *  Logs the JSON response from API.
+ **/
+async function showNumberTriviaQuery(favNum){
+
+  const response = await fetch(`${BASE_URL}/${favNum}?json`)
+
+    const data = await response.json();
+
+    console.log(data);
+}
+
+/*****************************************************************************
+ * Makes 4 separate requests for trivia about 4 different numbers from
+ *  Numbers API.
+ *  Logs the JSON response from API.
+ **/
+async function showNumberRace(){
+
+}
